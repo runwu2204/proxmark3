@@ -50,6 +50,11 @@ jobs:
 
       - name: Test
         run: make check
+      - name: uploadBuild
+        uses: actions/upload-artifact@v4
+        with:
+          name: ubuntu-latest-output  # Artifact 名称
+          path: .         # 要保存的文件或文件夹路径
 
   ubuntu-make-btaddon:
     runs-on: ubuntu-latest
@@ -81,7 +86,11 @@ jobs:
 
       - name: Test
         run: make check
-
+      - name: uploadBuild
+        uses: actions/upload-artifact@v4
+        with:
+          name: ubuntu-make-btaddon-output  # Artifact 名称
+          path: ./
   ubuntu-cmake:
     runs-on: ubuntu-latest
 
@@ -127,5 +136,5 @@ jobs:
       - name: uploadBuild
         uses: actions/upload-artifact@v4
         with:
-          name: build-output  # Artifact 名称
+          name: ubuntu-cmakebuild-output  # Artifact 名称
           path: client/build         # 要保存的文件或文件夹路径
