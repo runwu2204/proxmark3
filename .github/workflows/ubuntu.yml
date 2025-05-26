@@ -118,3 +118,9 @@ jobs:
         env:
           CHECKARGS: "--clientbin ./client/build/proxmark3"
         run: make client/check
+        
+      - name: uploadBuild
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output  # Artifact 名称
+          path: output         # 要保存的文件或文件夹路径
