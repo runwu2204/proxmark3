@@ -13,7 +13,12 @@ on:
       - 'docker/**'
       - 'traces/**'
       - '.vscode/**'
-
+  workflow_dispatch:
+    inputs:
+      build_branch:
+        description: 'Branch to build from'
+        required: true
+        default: 'main'
 
 jobs:
   ubuntu-make:
