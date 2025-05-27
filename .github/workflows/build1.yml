@@ -19,7 +19,7 @@ jobs:
   ubuntu-make:
     runs-on: ubuntu-latest
     env:
-      artifacts_dir: "${{ env.HOME }}/artifacts"
+      artifacts_dir: "../artifacts"
     steps:
       - uses: actions/checkout@v4
         with:
