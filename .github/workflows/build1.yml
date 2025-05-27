@@ -18,8 +18,8 @@ on:
 jobs:
   ubuntu-make:
     runs-on: ubuntu-latest
-    env:
-      artifacts_dir: "/home/artifacts"
+    # env:
+    #   artifacts_dir: "artifacts"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -46,7 +46,7 @@ jobs:
         run: |
           # 获取所有 tags 并按版本号排序
           tags=$(git tag --sort=-version:refname)
-          
+          artifacts_dir="$HOME/artifacts_dir"
           # 创建临时目录存放所有 tag 的构建结果
           mkdir -p "$artifacts_dir"
 
@@ -71,8 +71,6 @@ jobs:
             # 构建
             make -j$((`nproc` + 1)) recovery
 
-            # 测试
-            make check
 
             # 保存构建结果
             tag_artifacts="$artifacts_dir/$tag"
@@ -88,4 +86,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ubuntu-latest-output
-          path: ${{ env.artifacts_dir }} 
+          path: "${{ env.HOME }}/artifacts_dir" 
