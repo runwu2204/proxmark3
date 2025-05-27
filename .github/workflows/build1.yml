@@ -47,7 +47,7 @@ jobs:
           tags=$(git tag --sort=-version:refname)
           
           # 创建临时目录存放所有 tag 的构建结果
-          artifacts_dir="artifacts"
+          artifacts_dir="/artifacts"
           mkdir -p "$artifacts_dir"
 
           # 遍历每个 tag
