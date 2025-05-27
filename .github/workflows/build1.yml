@@ -83,7 +83,8 @@ jobs:
           # 上传所有 tag 的构建结果
           echo "Uploading artifacts from: $artifacts_dir"
           ls -R "$artifacts_dir"
-        
+        continue-on-error: true
+
       - uses: actions/upload-artifact@v4
         with:
           name: ubuntu-latest-output
