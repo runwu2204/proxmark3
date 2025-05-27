@@ -18,7 +18,8 @@ on:
 jobs:
   ubuntu-make:
     runs-on: ubuntu-latest
-
+    env:
+      artifacts_dir: "${{ env.HOME }}/artifacts"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -47,7 +48,6 @@ jobs:
           tags=$(git tag --sort=-version:refname)
           
           # 创建临时目录存放所有 tag 的构建结果
-          artifacts_dir="$HOME/artifacts"
           mkdir -p "$artifacts_dir"
 
           # 遍历每个 tag
@@ -69,7 +69,7 @@ jobs:
             echo "PLATFORM=PM3OTHER" > Makefile.platform
 
             # 构建
-            make -j$((`nproc` + 1)) all
+            make -j$((`nproc` + 1)) recovery
 
             # 测试
             make check
@@ -87,4 +87,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ubuntu-latest-output
-          path: "$artifacts_dir"
+          path: ${{ env.artifacts_dir }} 
