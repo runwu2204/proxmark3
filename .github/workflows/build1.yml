@@ -86,4 +86,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ubuntu-latest-output
-          path: "${{ env.HOME }}/artifacts_dir" 
+          path: "/home/runner/artifacts_dir" 
