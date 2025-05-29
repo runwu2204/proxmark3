@@ -69,7 +69,7 @@ jobs:
             echo "PLATFORM=PM3OTHER" > Makefile.platform
 
             # 构建
-            make -j$((`nproc` + 1)) recovery
+            make -j$((`nproc` + 1)) all
 
 
             # 保存构建结果
